@@ -1,0 +1,64 @@
+﻿@model TwitterAPIDemo.Models.TweetStatistics
+
+@{
+    ViewData["Title"] = "Stats Page";
+}
+
+@*Created a class for new button size (btn-xlg) and used inline styles just to demonstrate both.
+    Usually all would be in the one or more sytlesheets.*@
+
+<div class="text-center">
+    <h1 class="display-4">Tweet Stats</h1>
+</div>
+<div class="text-center" style="margin-top:80px; margin-bottom:50px;">
+    <button class="btn btn-info btn-xlg" type="button" onclick="location.href='@Url.Action("Index","Stats")'">Refresh Stats</button>
+</div>
+<div style="@(Model.ErrorList.Any() ? "display:block;" : "display:none;") padding: 10px; color: #FF0000; background-color: yellow">
+    @foreach (var item in Model.ErrorList)
+    {@Html.DisplayFor(x => item)<br />}
+</div>
+<div style="@(Model.ErrorList.Any() ? "display:none;" : "display:block;")">
+    <table style="width: 800px" cellpadding="6" cellspacing="6" border="0">
+        <tr>
+            <td style="width: 360px">Total number of tweets received</td>
+            <td>@Model.TotalTweetCount</td>
+        </tr>
+        <tr>
+            <td>Average tweets per hour/minute/second</td>
+            <td>@Model.TotalTweetsPerHour per hour, @Model.TotalTweetsPerMinute per minute, @Model.TotalTweetsPerSecond per second</td>
+        </tr>
+        <tr>
+            <td>Top emoji(s) in tweets</td>
+            <td>
+                @foreach (var item in Model.TopEmojis)
+                {@Html.DisplayFor(x => item)@Html.Raw("&nbsp")}
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">Top hashtag(s)</td>
+            <td>
+                @foreach (var item in Model.TopHashTags)
+                {@Html.Raw("#")@Html.DisplayFor(x => item)<br />}
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">Top domain(s)</td>
+            <td>
+                @foreach (var item in Model.TopDomains)
+                {@Html.DisplayFor(x => item)<br />}
+            </td>
+        </tr>
+        <tr>
+            <td>Percent of tweets that contains emojis</td>
+            <td>@Model.PercentOfTweetsWithEmojis@Html.Raw("%")</td>
+        </tr>
+        <tr>
+            <td>Percent of tweets that contain a url</td>
+            <td>@Model.PercentOfTweetsWithURL@Html.Raw("%")</td>
+        </tr>
+        <tr>
+            <td>Percent of tweets that contain a photo url</td>
+            <td>@Model.PercentOfTweetsWithPhotoURL@Html.Raw("%")</td>
+        </tr>
+    </table>
+</div>

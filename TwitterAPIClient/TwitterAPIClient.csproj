@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Content Remove="Controllers\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <None Remove="Controllers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Helpers\EmojiHelper.cs" />
+    <Compile Remove="Helpers\UrlHelper.cs" />
+    <Compile Remove="Interfaces\ICredentials.cs" />
+    <Compile Remove="Interfaces\IEmojiHelper.cs" />
+    <Compile Remove="Interfaces\ITweetController.cs" />
+    <Compile Remove="Interfaces\ITweetObjects.cs" />
+    <Compile Remove="Interfaces\IUrlHelper.cs" />
+    <Compile Remove="Models\Credentials.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="TweetinviAPI" Version="5.0.3" />
+  </ItemGroup>
+
+</Project>
